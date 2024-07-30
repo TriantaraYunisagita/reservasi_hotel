@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kamar', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_kamar')->unique();
+            $table->unsignedBigInteger('id_kamar')->autoIncrement()->unique();
             $table->string('nama_kamar');
-            $table->enum('jenis_kamar', ['Deluxe','Superior','Persident']);
+            $table->enum('jenis_kamar', ['Deluxe','Superior','President']);
             $table->unsignedBigInteger('ukuran_kamar');
             $table->unsignedBigInteger('harga');
             $table->timestamps();

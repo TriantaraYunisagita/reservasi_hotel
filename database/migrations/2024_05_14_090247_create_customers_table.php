@@ -14,10 +14,10 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->unsignedBigInteger('customer_id')->unique();
-            $table->string('nik');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('users');
+            $table->string('nik')->unique();
             $table->string('nama_customer');
-            $table->string('email');
             $table->string('negara');
             $table->timestamps();
         });

@@ -3,30 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customers;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class CustomerController extends Controller
 {
     public function index(): View
     {
-        $customers = Customers::latest()->paginate(10);
-        return view('customers.index',compact('customers'));
+        $customers = DB::table('customers')
+        ->join('users', 'users.id', '=', 'customers.customer_id')
+        ->select('users.email', 'customers.*')
+        ->get();
+        return view('levelAdmin.customers.index',compact('customers'));
     }
 
     public function create(): View {
-        return view('customers.create');
+        $user = User::where('level', 'Customer')->get();
+        return view('levelAdmin.customers.create', compact('user'));
     }
 
     public function store(Request $request): RedirectResponse {
         $request->validate([
 
-            'customer_id'=> 'required|unique:customers,customer_id',
-            'nik' => 'required',
+            'customer_id'=> 'required',
+            'nik' => 'required|unique:customers,nik',
             'nama_customer' => 'required',
-            'email' => 'required',
             'negara' => 'required'
 
         ]);
@@ -35,7 +40,6 @@ class CustomerController extends Controller
             'customer_id' => $request->customer_id,
             'nik' => $request->nik,
             'nama_customer' => $request->nama_customer,
-            'email' => $request->email,
             'negara' => $request->negara,
         ]);
         return redirect()->route('customers.index')->with(['success' => 'Data Berhasil Ditambahkan']);
@@ -43,16 +47,19 @@ class CustomerController extends Controller
 
     public function show(string $id): View
     {
-        $customers = Customers::findOrFail($id);
-
-        return view('customers.show', compact('customers'));
+        $customers = DB::table('customers')
+        ->join('users', 'users.id', '=', 'customers.customer_id')
+        ->select('users.email', 'customers.*')
+        ->where('customers.nik', $id)
+        ->first();
+        return view('levelAdmin.customers.show', compact('customers'));
     }
     
     public function edit(string $id): View
     {
         $customers = Customers::findOrFail($id);
 
-        return view('customers.edit', compact('customers'));
+        return view('levelAdmin.customers.edit', compact('customers'));
     }
 
     public function update(Request $request, $id): RedirectResponse
@@ -60,17 +67,12 @@ class CustomerController extends Controller
         //validate form
         $request->validate([
 
-            'nik' => 'required',
             'nama_customer' => 'required',
-            'email' => 'required',
             'negara' => 'required'
         ]);
 
         $customers = Customers::findOrFail($id);
         $customers->update([
-
-            'nik' => $request->nik,
-            'nama_customer' => $request->nama_customer,
             'email' => $request->email,
             'negara' => $request->negara,
             ]);

@@ -13,10 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reservasi', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_reservasi')->unique();
+            $table->unsignedBigInteger('id_reservasi')->autoIncrement()->unique();
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('customer_id')->on('customers');
-            $table->date('tanggal');
             $table->date('tanggal_mulai');
             $table->date('tanggal_akhir');
             $table->unsignedBigInteger('id_hotel');

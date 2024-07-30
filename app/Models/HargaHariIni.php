@@ -13,7 +13,6 @@ class HargaHariIni extends Model
 
     protected $fillable = [
         'id_hotel',
-        'harga',
         'available_room',
         'tanggal',
         'id_kamar',

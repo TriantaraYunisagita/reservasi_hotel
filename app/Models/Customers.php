@@ -15,10 +15,9 @@ class Customers extends Model
         'customer_id',
         'nik',
         'nama_customer',
-        'email',
         'negara',
     ];
     
-    protected $primaryKey = 'customer_id';
+    protected $primaryKey = 'nik';
 
 }

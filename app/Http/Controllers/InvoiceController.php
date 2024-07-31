@@ -43,7 +43,7 @@ class InvoiceController extends Controller
             'status' => $request->status,
             'besar_dp' => $request->besar_dp,
         ]);
-        return redirect()->route('invoice.index')->with(['success' => 'Data Berhasil Ditambahkan']);
+        return redirect()->route('admin.invoice.index')->with(['success' => 'Data Berhasil Ditambahkan']);
     }
 
     public function show(string $id): View
@@ -81,13 +81,13 @@ class InvoiceController extends Controller
             'besar_dp' => $request->besar_dp,
         ]);
 
-        return redirect()->route('invoice.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('admin.invoice.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     public function destroy($id): RedirectResponse
     {
         $invoice = Invoice::findOrFail($id);
         $invoice->delete();
-        return redirect()->route('invoice.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('admin.invoice.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

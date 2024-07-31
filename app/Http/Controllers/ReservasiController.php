@@ -47,7 +47,7 @@ class ReservasiController extends Controller
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_akhir' => $request->tanggal_akhir,
         ]);
-        return redirect()->route('reservasi.index')->with(['success' => 'Data Berhasil Ditambahkan']);
+        return redirect()->route('admin.reservasi.index')->with(['success' => 'Data Berhasil Ditambahkan']);
     }
 
     public function show(string $id): View
@@ -87,13 +87,13 @@ class ReservasiController extends Controller
             'tanggal_akhir' => $request->tanggal_akhir,
         ]);
 
-        return redirect()->route('reservasi.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('admin.reservasi.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     public function destroy($id): RedirectResponse
     {
         $reservasi = Reservasi::findOrFail($id);
         $reservasi->delete();
-        return redirect()->route('reservasi.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('admin.reservasi.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

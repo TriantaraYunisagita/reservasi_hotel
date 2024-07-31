@@ -42,7 +42,7 @@ class CustomerController extends Controller
             'nama_customer' => $request->nama_customer,
             'negara' => $request->negara,
         ]);
-        return redirect()->route('customers.index')->with(['success' => 'Data Berhasil Ditambahkan']);
+        return redirect()->route('admin.customers.index')->with(['success' => 'Data Berhasil Ditambahkan']);
     }
 
     public function show(string $id): View
@@ -77,14 +77,14 @@ class CustomerController extends Controller
             'negara' => $request->negara,
             ]);
 
-        return redirect()->route('customers.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('admin.customers.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     public function destroy($id): RedirectResponse
     {
         $customers = Customers::findOrFail($id);
         $customers->delete();
-        return redirect()->route('customers.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('admin.customers.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 
 

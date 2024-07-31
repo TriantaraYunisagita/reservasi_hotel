@@ -45,7 +45,7 @@ class PembayaranController extends Controller
             'id_invoice' => $request->id_invoice,
             'metode_bayar' => $request->metode_bayar,
         ]);
-        return redirect()->route('pembayaran.index')->with(['success' => 'Data Berhasil Ditambahkan']);
+        return redirect()->route('admin.pembayaran.index')->with(['success' => 'Data Berhasil Ditambahkan']);
     }
 
     public function show(string $id): View
@@ -85,13 +85,13 @@ class PembayaranController extends Controller
             'metode_bayar' => $request->metode_bayar,
         ]);
 
-        return redirect()->route('pembayaran.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('admin.pembayaran.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     public function destroy($id): RedirectResponse
     {
         $pembayaran = Pembayaran::findOrFail($id);
         $pembayaran->delete();
-        return redirect()->route('pembayaran.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('admin.pembayaran.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerReservasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HargahariiniController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\KamarController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservasiController;
@@ -31,6 +32,7 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth', 'adminAccess'])->name('admin.')->group(function() {
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/customers', CustomerController::class);
+    Route::resource('/admin/kamar', KamarController::class);
     Route::resource('/admin/hargahariini', HargahariiniController::class);
     Route::resource('/admin/invoice', InvoiceController::class);
     Route::resource('/admin/pembayaran', PembayaranController::class);

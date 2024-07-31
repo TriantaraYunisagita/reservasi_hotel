@@ -36,7 +36,7 @@ class UserController extends Controller
             'password' => Hash::make($request['password']), 
             'level' => $request->level,
         ]);
-        return redirect()->route('user.index')->with(['success' => 'Data Berhasil Ditambahkan']);
+        return redirect()->route('admin.user.index')->with(['success' => 'Data Berhasil Ditambahkan']);
     }
 
     public function show(string $id): View
@@ -69,13 +69,13 @@ class UserController extends Controller
             'level' => $request->level,
             ]);
 
-        return redirect()->route('user.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('admin.user.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     public function destroy($id): RedirectResponse
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('user.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('admin.user.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

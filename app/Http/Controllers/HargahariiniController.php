@@ -41,7 +41,7 @@ class HargahariiniController extends Controller
             'tanggal' => $request->tanggal,
             'id_kamar' => $request->id_kamar
         ]);
-        return redirect()->route('hargahariini.index')->with(['success' => 'Data Berhasil Ditambahkan']);
+        return redirect()->route('admin.hargahariini.index')->with(['success' => 'Data Berhasil Ditambahkan']);
     }
 
     public function show(string $id): View
@@ -78,13 +78,13 @@ class HargahariiniController extends Controller
             'tanggal' => $request->tanggal
         ]);
 
-        return redirect()->route('hargahariini.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('admin.hargahariini.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     public function destroy($id): RedirectResponse
     {
         $hargahariini = HargaHariIni::findOrFail($id);
         $hargahariini->delete();
-        return redirect()->route('hargahariini.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('admin.hargahariini.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

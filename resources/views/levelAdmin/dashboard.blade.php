@@ -41,6 +41,23 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <a href="{{url('admin/hargahariini')}}">
             <div class="card card-statistic-1">
+                <div class="card-icon bg-dark">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Kamar</h4>
+                    </div>
+                    <div class="card-body">
+                        {{DB::table('kamar')->count()}}
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <a href="{{url('admin/hargahariini')}}">
+            <div class="card card-statistic-1">
                 <div class="card-icon bg-warning">
                     <i class="fas fa-building"></i>
                 </div>

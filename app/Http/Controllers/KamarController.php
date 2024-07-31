@@ -34,7 +34,7 @@ class KamarController extends Controller
             'ukuran_kamar' => $request->ukuran_kamar,
             'harga' => $request->harga,
         ]);
-        return redirect()->route('kamar.index')->with(['success' => 'Data Berhasil Ditambahkan']);
+        return redirect()->route('admin.kamar.index')->with(['success' => 'Data Berhasil Ditambahkan']);
     }
 
     public function show(string $id): View
@@ -67,13 +67,13 @@ class KamarController extends Controller
             'harga' => $request->harga,
             ]);
 
-        return redirect()->route('kamar.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('admin.kamar.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     public function destroy($id): RedirectResponse
     {
         $kamar = Kamar::findOrFail($id);
         $kamar->delete();
-        return redirect()->route('kamar.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('admin.kamar.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }
